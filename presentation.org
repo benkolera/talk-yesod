@@ -1,8 +1,8 @@
 * Meta Stuff
 ** Goal for the talk
-*** To help people see that types can be our friend in web apps without being cumbersome and noisy
-*** To show that TDD doesn't suck when you only have to test your program logic and not have to write mind numbing type tests that a compiler could do. 
-*** In essense, we're here to completely debunk the myth that coding in a type safe, compiled language makes you less agile. It actually increases agility.
+To help people see that types can be our friend in web apps without being cumbersome and noisy
+To show that TDD doesn't suck when you only have to test your program logic and not have to write mind numbing type tests that a compiler could do. 
+In essense, we're here to completely debunk the myth that coding in a type safe, compiled language makes you less agile. It actually increases agility.
 *** To show off cool things about yesod:
 **** Routing 
 **** Templating languages
