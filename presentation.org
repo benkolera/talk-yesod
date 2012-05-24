@@ -20,7 +20,7 @@ RESTfulness
 ***** Session handling ( will demonstrate sessions but not in a big way )
 * Talk
 ** Introductory Stuff
-*** Web development: the problems we face
+**** Web development: the problems we face
 Crap in, but need magic out. Untrustworthy, inconsistent and downright malicious data from both your users and the database that we have to reason about and display to the user. (Boundary problem)
 
 Very simple problems; there are just a lot of them. Complexity comes from the mess of conflicting, overlapping and inconsistencies of the business requirements. Need to program in a concise way that doesn't add any more noise to our mess. Also need to be able to make small composable elements to so we don't have to repeat ourselves on every page.
@@ -28,7 +28,7 @@ Very simple problems; there are just a lot of them. Complexity comes from the me
 Requirements are in constant change. Need to be confident that are changes are correct without manual testing. Agility is paramount to pretty much everything.
 
 Second most and almost equally important problem is performance. No one likes waiting for a slow system and with a public website slow can mean lost customers.
-*** What is yesod
+**** What is yesod
 Pronounced yeh-soad; means foundation in hebrew [[1]].
 
 Started as a haskell web handling and routing library created by Michael Snoyman.
@@ -36,7 +36,7 @@ Started as a haskell web handling and routing library created by Michael Snoyman
 Is now a fully functional set of libraries that help you build webapps that has all the standard bells and whistles with a haskell twist..
 
 Project is quite mature. Hit version 1.0 after 3 years, 80 packages, dozens of contributors & 1000s of commits [[2]].
-*** Why Haskell for web development?
+**** Why Haskell for web development?
 Very powerful type system that can help prevent silly mistakes.
 
 Expressive functional language that leads to concise & composable code.
@@ -45,21 +45,21 @@ Haskell can be very fast thanks to GHC and there are lots of clever, performant 
 
 Laziness can be harnessed to create very declarative code without sacrificing performance or code clarity.
 
-*** Why yesod?
-**** Embraces the type safety to help prevent silly mistakes and help ensure that data is sanitised when needed.
+**** Why yesod?
+***** Embraces the type safety to help prevent silly mistakes and help ensure that data is sanitised when needed.
 Routing , Templating Languages, Forms & Persistent all work in harmony for this.
 
-**** Heavily utilizes haskell metaprogramming to reduce boilerplate code that can make type safe programming cumbersome.
+***** Heavily utilizes haskell metaprogramming to reduce boilerplate code that can make type safe programming cumbersome.
 
-**** Follows the haskell mindset that you should be able to build little small reusable bits ( form elements, web pages, db queries ) and compose them together into larger parts. 
+***** Follows the haskell mindset that you should be able to build little small reusable bits ( form elements, web pages, db queries ) and compose them together into larger parts. 
 
-**** Because it is a set of libraries, not a framework it stays out of your way and can be as simple or as complicated as you like.
+***** Because it is a set of libraries, not a framework it stays out of your way and can be as simple or as complicated as you like.
 
 Has a scaffold project as a suggestion for layout but doesn't require any prescribed project format. 
 
-**** By building on top of some really cool haskell libraries ( conduits, warp, blaze-html ) yesod is amazingly performant. 
+***** By building on top of some really cool haskell libraries ( conduits, warp, blaze-html ) yesod is amazingly performant. 
 
-**** Is a web framework where there is no longer a tradeoff between agility, performance and code safety.
+***** Is a web framework where there is no longer a tradeoff between agility, performance and code safety.
 
 ** Concepts & Code 
 
@@ -124,8 +124,11 @@ GHC 7.6 should help this by being able to treat compile errors as warnings and g
 **** Type errors force you to load yesod into your brain as you need to know a bit about yesod to figure out what is wrong.
 ** Awesome things about yesod
 Very composable. 
+
 Type safety helps us from doing stupid things. 
+
 Suprisingly low boilerplate.
+
 Is in haskell! 
 * References
 <<1>> http://www.forvo.com/word/yesod/
