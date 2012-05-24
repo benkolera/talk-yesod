@@ -21,10 +21,13 @@ RESTfulness
 * Talk
 ** Introductory Stuff
 *** Web development: the problems we face
-**** Crap in, but need magic out. Untrustworthy, inconsistent and downright malicious data from both your users and the database that we have to reason about and display to the user. (Boundary problem)
-**** Very simple problems; there are just a lot of them. Complexity comes from the mess of conflicting, overlapping and inconsistencies of the business requirements. Need to program in a concise way that doesn't add any more noise to our mess. Also need to be able to make small composable elements to so we don't have to repeat ourselves on every page.
-**** Requirements are in constant change. Need to be confident that are changes are correct without manual testing. Agility is paramount to pretty much everything.
-**** Second most and almost equally important problem is performance. No one likes waiting for a slow system and with a public website slow can mean lost customers.
+Crap in, but need magic out. Untrustworthy, inconsistent and downright malicious data from both your users and the database that we have to reason about and display to the user. (Boundary problem)
+
+Very simple problems; there are just a lot of them. Complexity comes from the mess of conflicting, overlapping and inconsistencies of the business requirements. Need to program in a concise way that doesn't add any more noise to our mess. Also need to be able to make small composable elements to so we don't have to repeat ourselves on every page.
+
+Requirements are in constant change. Need to be confident that are changes are correct without manual testing. Agility is paramount to pretty much everything.
+
+Second most and almost equally important problem is performance. No one likes waiting for a slow system and with a public website slow can mean lost customers.
 *** What is yesod
 **** Pronounced yeh-soad; means foundation in hebrew [[1]].
 **** Started as a haskell web handling and routing library created by Michael Snoyman.
