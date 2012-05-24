@@ -2,7 +2,7 @@
                                   ============
 
 Author: Ben Kolera <ben@Bens-MacBook-Pro.local>
-Date: 2012-05-24 21:21:17 EST
+Date: 2012-05-24 21:28:56 EST
 
 
 Table of Contents
@@ -68,6 +68,10 @@ Table of Contents
   Is now a fully functional set of libraries that help you build webapps that has all the standard bells and whistles with a haskell twist..
   
   Project is quite mature. Hit version 1.0 after 3 years, 80 packages, dozens of contributors & 1000s of commits [2].
+
+  [1]: sec-5.1
+  [2]: sec-5.2
+
 * Why Haskell for web development? 
   Very powerful type system that can help prevent silly mistakes.
   
@@ -117,7 +121,7 @@ Table of Contents
 
 2.3 To the scaffold and beyond! 
 ================================
-* Quick tour of a yesod init and the scaffolding: 
+* Scaffold basics 
   + Create blank project with yesod init. 
   + Where to find stuff in the scaffolding: 
     Foundation.hs and an explanation of the important bits.
@@ -161,6 +165,9 @@ Table of Contents
 * Type errors can be a bit unfriendly ( you know something is broken, but not precisely what ). 
 * Type safety limits small-scale experimentation since you can't just test one page if your code doesn't compile: 
   GHC 7.6 should help this by being able to treat compile errors as warnings and get runtime errors instead. [3]
+
+  [3]: sec-5.3
+
 * Type errors force you to load yesod into your brain as you need to know a bit about yesod to figure out what is wrong. 
 
 3.2 Awesome things about yesod 
@@ -192,10 +199,10 @@ Is in haskell!
 
 5 References 
 ~~~~~~~~~~~~~
-1 [http://www.forvo.com/word/yesod/]
-
-2 [http://www.yesodweb.com/blog/2012/04/announcing-yesod-1-0]
-
-3 [http://hackage.haskell.org/trac/ghc/wiki/Status/May12]
-
-
+  + 1 [http://www.forvo.com/word/yesod/] 
+    
+  + 2 [http://www.yesodweb.com/blog/2012/04/announcing-yesod-1-0] 
+    
+  + 3 [http://hackage.haskell.org/trac/ghc/wiki/Status/May12] 
+    
+    
