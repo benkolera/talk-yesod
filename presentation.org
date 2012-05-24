@@ -63,10 +63,10 @@ Has a scaffold project as a suggestion for layout but doesn't require any prescr
 
 ** Concepts & Code 
 
-*** Hello world Single file, single route web app.
+**** Hello world Single file, single route web app.
 
-**** Shows how simple yesod can be unlike the scaffolding which can be a bit scary.
-**** Talk about the slightly odd pragmas in there:
+***** Shows how simple yesod can be unlike the scaffolding which can be a bit scary.
+***** Talk about the slightly odd pragmas in there:
 Overloaded strings
 
 Quasiquotes ( By showing the QQ expansion of parseRoutes and whamlet )
@@ -75,15 +75,15 @@ Template Haskell ( by showing the output of mkYesod )
 
 Type Families ( by showing the data definition nested inside of our instance of render route ).
 
-*** Expand hello world to further show the basics without introducing the complication of the scaffold:
+**** Expand hello world to further show the basics without introducing the complication of the scaffold:
 Page wrapper & some CSS
 
 A POST method, plus a GET with a route token in there. 
 
 A form.
-*** Quick tour of a yesod init and the scaffolding:
-**** Create blank project with yesod init. 
-**** Where to find stuff in the scaffolding:
+**** Quick tour of a yesod init and the scaffolding:
+***** Create blank project with yesod init. 
+***** Where to find stuff in the scaffolding:
 Foundation.hs and an explanation of the important bits.
 
 Templates 
@@ -94,8 +94,8 @@ Model Config
 
 Default place for handlers ( though explaning that where they go doesn't matter; they are just functions ).
 
-**** Difference between using in file QQ ( for routes & templates ) and external files.
-*** Big Application to show:
+***** Difference between using in file QQ ( for routes & templates ) and external files.
+**** Big Application to show:
 A bit more about the handler monad ( persistent queries, redirects, etc )
 
 Show off type safe routes and how they really help when refactoring routes.
