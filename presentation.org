@@ -130,6 +130,18 @@ Type safety helps us from doing stupid things.
 Suprisingly low boilerplate.
 
 Is in haskell! 
+* Further Reading
+**** Yesod Website [[http://www.yesodweb.com/][http://www.yesodweb.com/]]
+Getting Started Guide
+
+Awesome screencasts
+
+Wiki 
+**** Book 
+[[http://shop.oreilly.com/product/0636920023142.do][O'Reilly]]
+
+[[http://www.yesodweb.com/book/][HTML Version of the book]]
+
 * References
 <<1>> http://www.forvo.com/word/yesod/
 
