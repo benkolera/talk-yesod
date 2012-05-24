@@ -61,8 +61,7 @@ Has a scaffold project as a suggestion for layout but doesn't require any prescr
 
 ***** Is a web framework where there is no longer a tradeoff between agility, performance and code safety.
 
-** Concepts & Code 
-
+** Simple Yesod
 **** Hello world Single file, single route web app.
 
 ***** Shows how simple yesod can be unlike the scaffolding which can be a bit scary.
@@ -81,7 +80,8 @@ Page wrapper & some CSS
 A POST method, plus a GET with a route token in there. 
 
 A form.
-**** Quick tour of a yesod init and the scaffolding:
+** To the scaffold and beyond!
+**** Scaffold basics
 ***** Create blank project with yesod init. 
 ***** Where to find stuff in the scaffolding:
 Foundation.hs and an explanation of the important bits.
