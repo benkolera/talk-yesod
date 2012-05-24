@@ -1,0 +1,3 @@
+* BFPG Talk on Yesod 
+
+This is the working ground for a talk I am preparing for [[http://www.bfpg.org/][BFPG]] in june. Watch this space!
