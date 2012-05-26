@@ -1,5 +1,9 @@
+.#*
 *.hi
 *.ho
 *.o
 *.aes
-hello_world/helloworld
+simple_yesod/helloworld.0
+simple_yesod/helloworld.1
+simple_yesod/notes.1
+

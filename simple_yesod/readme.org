@@ -1,0 +1,16 @@
+* Simple ( Single-File yesod examples ) to get a feel for yesod
+** Running
+To run one of these files, the easiest way is with runhaskell:
+
+#+BEGIN_SRC bash
+runhaskell helloworld.0.hs
+#+END_SRC 
+
+** Inspected generated code:
+It is very useful ( well it was to me anyhow ) to see the code that the yesod
+meta programming generates as knowing what goes on under the hood makes it
+easier to understand the type errors. 
+
+#+BEGIN_SRC bash
+ghc -ddump-splices helloworld.0.hs
+#+END_SRC 
