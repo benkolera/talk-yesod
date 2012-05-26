@@ -2,7 +2,7 @@
                                   ============
 
 Author: Ben Kolera <ben@Bens-MacBook-Pro.local>
-Date: 2012-05-24 21:28:56 EST
+Date: 2012-05-26 10:41:37 EST
 
 
 Table of Contents
@@ -118,6 +118,10 @@ Table of Contents
   A POST method, plus a GET with a route token in there. 
   
   A form.
+  
+  Tiny bit of persistent.
+  
+  (Will probably need to talk about Monad Transformers and the layers of monads that make up Handler at this point)
 
 2.3 To the scaffold and beyond! 
 ================================
