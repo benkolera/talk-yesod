@@ -1,3 +1,7 @@
 * BFPG Talk on Yesod 
-
 This is the working ground for a talk I am preparing for [[http://www.bfpg.org/][BFPG]] in june. Watch this space!
+
+** Simple Yesod
+Take a look in the simple_yesod folder for some super simple one-file yesod
+applications that help demystify the basics of yesod without needing to jump
+into the scaffolding. 
