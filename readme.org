@@ -5,3 +5,8 @@ This is the working ground for a talk I am preparing for [[http://www.bfpg.org/]
 Take a look in the simple_yesod folder for some super simple one-file yesod
 applications that help demystify the basics of yesod without needing to jump
 into the scaffolding. 
+
+** Presentation.{org,txt}
+These are my rough outline of what I want to talk about. They aren't really fit for 
+human consumption yet and will be refined / replaced with a real outline and slides
+later on.
