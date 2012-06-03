@@ -1,0 +1,205 @@
+@strong1Colour: #F9693C;
+@strong2Colour: #3c764b;
+@weak3Colour: ;
+@weak2Colour: ;
+@weak1Colour: ;
+
+@font-face {
+  font-family: 'QuicksandLight';
+  src: url('@{StaticR fonts_Quicksand_Quicksand_Light_otf}');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'QuicksandLightOblique';
+  src: url('@{StaticR fonts_Quicksand_Quicksand_Light_Oblique_otf}');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+	font-family: 'QuicksandDash';
+  src: url('@{StaticR fonts_Quicksand_Quicksand_Dash_otf}');
+	font-weight: normal;
+	font-style: normal;
+}
+*/
+
+@font-face {
+	font-family: 'Quicksand';
+  src: url('@{StaticR fonts_Quicksand_Quicksand_Book_otf}');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Quicksand';
+  src: url('@{StaticR fonts_Quicksand_Quicksand_Book_Oblique_otf}');
+	font-weight: normal;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Quicksand';
+  src: url('@{StaticR fonts_Quicksand_Quicksand_Bold_otf}');
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Quicksand';
+  src: url('@{StaticR fonts_Quicksand_Quicksand_Bold_Oblique_otf}');
+	font-weight: bold;
+	font-style: italic;
+}
+
+h1, h2, h3 {
+	font-family: 'Quicksand','Helvetica Neue',Arial, sans-serif;
+	font-weight: bold;
+}
+
+h4, h5, h6, dt {
+  font-family: "Helvetica Neue","Bitstream Vera Sans",Arial,sans-serif;
+}
+
+header[role="banner"]{
+	background:#{strong1Colour};
+  margin-bottom: 10px;
+	height: 164px;
+	width: 100%;
+  border-left: solid 2px #C53;
+  border-right: solid 2px #C53;
+  border-bottom: solid 2px #C53;
+	padding-top: 15px;
+  padding-left: 20px;
+
+  hgroup{ 
+    margin: 0;
+    margin-top: 15px;
+
+  	width: 80%;
+    height: 110px;
+   
+    h1{
+     color: #FFF;  
+    }
+  
+    h2{
+    	color: #FFF;
+    	font-size: 16px;
+    	font-style: italic;
+    	font-weight: 400;
+    	line-height: 1;
+      margin-top: 0.5em;
+    }
+  
+    .logo {
+      float: left;
+      width: 100px;
+      height: 100px;
+      background: url('@{ StaticR img_tomato_gif }');
+      margin-right: 10px;
+      -moz-border-radius: 15px;
+      border-radius: 15px;
+      border: solid 1px #FFF;
+    }
+  }
+}
+
+#menu-top-nav{
+	color: #FFF;
+	font-size: 14px;
+
+  li{
+	  float: left;
+    margin-left: 2px;
+    padding: 5px;
+    padding-bottom: 0px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    -moz-border-radius-bottomleft: 0px;
+    -moz-border-radius-bottomright: 0px;
+    border: solid 2px #{strong2Colour};
+    background: #{strong2Colour};
+  
+  }
+
+  li:hover{
+	  text-decoration: underline;
+    background: #{strong1Colour};
+  }
+
+  li a:visited {
+    color: #FFF;
+  }
+
+  li a:active {
+    color: #FFF;
+  }
+
+  li a:link {
+    color: #FFF;
+  }
+
+}
+
+#other-nav {
+  float: right;
+  width: 15%;
+  
+  a:hover{
+	  text-decoration: underline;
+  }
+
+  a:visited {
+    color: #{strong2Colour};
+  }
+
+  a:active {
+    color: #{strong2Colour};
+  }
+
+  a:link {
+    color: #{strong2Colour};
+  }
+}
+
+div[role="main"] {
+  height: 450px;
+
+  h1{
+	  font-size: 2em;
+  	line-height: 1;
+  	letter-spacing: -2px;
+  	word-spacing: 2px;
+  }
+  h2{
+	  font-size: 1.5em;
+  	line-height: 1.25;
+  	margin: 1.5833em 0 .6667em;
+  }
+  h3 {
+  	font-size: 1.25em;
+  	line-height: 1.2;
+  	margin: 1.8em 0 .6em;
+  }
+  h4 {
+  	font-size: 1.125em;
+  	line-height: 1.3333em;
+  	margin: 2em 0 .6667em;
+  }
+  h5, dt {
+  	font-weight: bold;
+  }
+}
+
+footer {
+  padding: 0.5em;
+  text-align: center;
+  font-size: 0.9em;
+  font-style: italic;
+}
+

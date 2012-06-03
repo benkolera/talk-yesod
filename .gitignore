@@ -6,4 +6,7 @@
 simple_yesod/helloworld.0
 simple_yesod/helloworld.1
 simple_yesod/notes.1
-
+tomato-monad/static/tmp/*
+tomato-monad/deploy/*
+*.sqlite3
+.DS_Store
