@@ -33,12 +33,11 @@ Framework, including a number of example applications.
 
 ### About Ben Kolera
 
-Ben is an experienced Perl, Java and Scala developer. His enthusiasm for
-Haskell causes him to dance at his desk, much to the amusement of his team at
-iseek. Ben is also a mad keen fitness fanatic, road cyclist and Muay Thai
-student who loves a physical challenge. Tough Mudder Brisbane 2013, anyone? In
-the future, Ben hopes to share his interest in functional programming through
-teaching, and we welcome his first steps in that direction at BFPG!
+Ben is an experienced Perl, Java and Scala developer. Ben is also a mad keen
+fitness fanatic, road cyclist and Muay Thai student who loves a physical
+challenge. Tough Mudder Brisbane 2013, anyone? In the future, Ben hopes to
+share his interest in functional programming through teaching, and we welcome
+his first steps in that direction at BFPG! 
 
 ## Compile-time metaprogramming with Template Haskell
 
