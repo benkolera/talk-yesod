@@ -15,24 +15,30 @@ encourage beginners to come and get excited about the possibilities!
 
 Developing and maintaining web applications within the constraints of a
 stateless client-server protocol is hard enough, without also having to worry
-about cross-site scripting attacks, SQL injection, and broken links. The Yesod
-Web Framework takes much of the worry out of web development, by ensuring that
-most common web programming errors are caught by the compiler. This means you
-can focus your development and testing on the interesting parts of your
-application. Yesod comes with a number of compact domain-specific templating
-languages, which give the benefit of type safety, without the overhead. Under
-the hood, Yesod uses the excellent GHC compiler and concurrent runtime, and
-high-quality libraries for streaming data, so you get great performance by
-default. In this talk, Ben will lead you through the main features of the Yesod
-Web Framework, including a number of example applications.
+about cross-site scripting attacks, SQL injection, and broken links.
+
+The Yesod Web Framework takes much of the worry out of web development, by
+ensuring that most common web programming errors are caught by the compiler.
+This means you can focus your development and testing on the interesting parts
+of your application. Yesod also comes with a number of compact embedded
+domain-specific templating languages, which give the benefit of type safety,
+without the overhead.
+
+Under the hood, Yesod uses the excellent GHC compiler and concurrent runtime,
+and high-quality libraries for streaming data, so you get great performance by
+default.
+
+In this talk, Ben will lead you through the main features of the Yesod Web
+Framework, including a number of example applications.
 
 ### About Ben Kolera
 
-Ben is a Perl, Java and Scala developer who dreams of the day he can use
-Haskell professionally. His team at iseek has built numerous internal web apps,
-and Ben is excited at the potential of using Yesod to make his web apps easier
-to develop, test and maintain. In his spare time, Ben likes to practice Muai
-Thai.
+Ben is an experienced Perl, Java and Scala developer. His enthusiasm for
+Haskell causes him to dance at his desk, much to the amusement of his team at
+iseek. Ben is also a mad keen fitness fanatic, road cyclist and Muay Thai
+student who loves a physical challenge. Tough Mudder Brisbane 2013, anyone? In
+the future, Ben hopes to share his interest in functional programming through
+teaching, and we welcome his first steps in that direction at BFPG!
 
 ## Compile-time metaprogramming with Template Haskell
 
