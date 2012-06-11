@@ -8,5 +8,6 @@ simple_yesod/helloworld.1
 simple_yesod/notes.1
 tomato-monad/static/tmp/*
 tomato-monad/deploy/*
+tomato-monad/dist/*
 *.sqlite3
 .DS_Store

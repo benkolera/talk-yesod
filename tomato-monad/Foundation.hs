@@ -1,20 +1,21 @@
 module Foundation
-    ( App (..)
-    , Route (..)
-    , AppMessage (..)
-    , resourcesApp
-    , Handler
-    , Widget
-    , Form
-    , maybeAuth
-    , requireAuth
-    , module Settings
-    , module Model
-    ) where
+       ( App (..)
+       , Route (..)
+       , AppMessage (..)
+       , resourcesApp
+       , Handler
+       , Widget
+       , Form
+       , maybeAuth
+       , requireAuth
+       , module Settings
+       , module Model
+       ) where
 
 import Prelude
 import Yesod
 import Yesod.Static
+import Yesod.Form.Jquery
 import Yesod.Auth
 import Yesod.Auth.BrowserId
 import Yesod.Auth.GoogleEmail
@@ -128,6 +129,10 @@ instance YesodPersist App where
             (persistConfig master)
             f
             (connPool master)
+
+-- And tell us where to find the jQuery libraries. We'll just use the defaults,
+-- which point to the Google CDN.
+instance YesodJquery App
 
 instance YesodAuth App where
     type AuthId App = UserId

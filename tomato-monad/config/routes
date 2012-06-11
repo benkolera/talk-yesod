@@ -8,3 +8,4 @@
 /about AboutR GET
 /pomodoros PomodorosR GET POST
 /tasks TasksR GET POST
+/tasks/#TaskId TaskR GET POST DELETE

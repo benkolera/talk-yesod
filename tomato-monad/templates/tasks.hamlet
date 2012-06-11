@@ -1,2 +1,5 @@
-<p>This page will list tasks and allow you to create new ones.
+<p>View a list of tasks and create new tasks. 
 
+^{ dueTasksW }
+^{ notDueTasksW }
+^{ taskFormW }

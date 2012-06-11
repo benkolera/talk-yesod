@@ -4,7 +4,7 @@ import Prelude
 import Yesod
 import Data.Text (Text)
 import Database.Persist.Quasi
-import Data.Time.Clock ( UTCTime )
+import Data.Time (UTCTime,Day)
 
 data PomodoroStatus = 
   Active | Failed | Completed 

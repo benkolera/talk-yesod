@@ -1,8 +1,7 @@
 @strong1Colour: #F9693C;
-@strong2Colour: #3c764b;
-@weak3Colour: ;
-@weak2Colour: ;
-@weak1Colour: ;
+@strong2Colour: #3C764B;
+@weak2Colour:   #F9D463;
+@weak1Colour:   #FFF;
 
 @font-face {
   font-family: 'QuicksandLight';
@@ -82,11 +81,11 @@ header[role="banner"]{
     height: 110px;
    
     h1{
-     color: #FFF;  
+     color: #{weak1Colour};  
     }
   
     h2{
-    	color: #FFF;
+    	color: #{weak2Colour};
     	font-size: 16px;
     	font-style: italic;
     	font-weight: 400;
@@ -102,13 +101,13 @@ header[role="banner"]{
       margin-right: 10px;
       -moz-border-radius: 15px;
       border-radius: 15px;
-      border: solid 1px #FFF;
+      border: solid 1px #{weak1Colour};
     }
   }
 }
 
 #menu-top-nav{
-	color: #FFF;
+	color: #{weak1Colour};
 	font-size: 14px;
 
   li{
@@ -133,15 +132,15 @@ header[role="banner"]{
   }
 
   li a:visited {
-    color: #FFF;
+    color: #{weak1Colour};
   }
 
   li a:active {
-    color: #FFF;
+    color: #{weak1Colour};
   }
 
   li a:link {
-    color: #FFF;
+    color: #{weak1Colour};
   }
 
 }
@@ -149,6 +148,7 @@ header[role="banner"]{
 #other-nav {
   float: right;
   width: 15%;
+  margin-right: 10px;
   
   a:hover{
 	  text-decoration: underline;
@@ -199,7 +199,7 @@ div[role="main"] {
 footer {
   padding: 0.5em;
   text-align: center;
-  font-size: 0.9em;
+  font-size: 1em;
   font-style: italic;
 }
 

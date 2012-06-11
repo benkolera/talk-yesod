@@ -24,6 +24,7 @@
        <header role="banner">
          <div id="other-nav">
             <a href="@{AboutR}">About</a> | #
+            <a href="http://yesodweb.com/">Yesod</a> | #
             <a href="http://github.com/benkolera/bfpg-yesod/">Github</a>
          <hgroup>
            <a href="@{HomeR}">
@@ -35,6 +36,8 @@
              <li><a href="@{PomodorosR}">Pomodoros</a>
              <li><a href="@{TasksR}">Tasks</a>
       <div class="container">
+        <div id="message">
+          
         <div id="main" role="main">
           <h1>#{pageTitle pc}
           ^{pageBody pc}

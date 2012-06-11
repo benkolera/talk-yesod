@@ -12,3 +12,13 @@ Pomodoro
   finish UTCTime    
   status PomodoroStatus
 
+Category
+  name        Text
+  description Textarea
+
+Task
+  title      Text
+  dueDate    Day Maybe
+  body       Textarea
+
+

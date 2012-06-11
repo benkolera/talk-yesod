@@ -1,4 +1,34 @@
+* Notes
+** Difference between GHandler & Handler
+** Ghci is your friend.
+
 * Meta Stuff
+** Blurb 
+**** Title: Yesod; An adventure in type safe web development.
+Web application development can be a tough process. Tangled messes of
+inconsistent and ever-changing requirements can really make the modification and
+maintenance of large-scale web application an unnecessarily scary and
+time-consuming task. In this talk we will explore a web framework called yesod,
+which has been written from the ground up to encode most of the mundane problems
+of web development ( routing & link generation, XSS prevention, DB query
+generation & data (de)serialisation, etc ) in the Haskell type system. This use
+of the type system gives developers the freedom rely on the compiler more and
+focus their testing efforts on what is most important: their actual business
+logic. We will see that Haskell -- with its terse syntax, meta-programming
+features and type inference -- removes a great deal of the boilerplate that is
+normally associated with type safe programming and truly gives us the best of the
+Statically and Dynamically typed worlds (and even without littering your projects
+with lots of brain-dead, poorly testable XML files). Seems too good to be true?
+Come along and decide for yourself! :) 
+
+**** Bio: Ben Kolera
+Ben is a Perl and Java/Scala developer dreaming of the day that he will
+be able to start professionally using Haskell for anything more than one off
+reports and shell scripts. As he and his team build and maintain quite a number
+of internal webapps, he is very excited at the potential that yesod could offer
+his team in the future ( and will certainly sneak one yesod app into our mix
+sometime in 2012 ;) ).
+
 ** Goal for the talk
 ***** To help people see that types can be our friend in web apps without being cumbersome and noisy
 ***** To show that TDD doesn't suck when you only have to test your program logic and not have to write mind numbing type tests that a compiler could do. 
@@ -133,6 +163,8 @@ The meta package yesod-platform and using cabal-dev to isolate your projects fix
 **** Type safety limits small-scale experimentation since you can't just test one page if your code doesn't compile:
 GHC 7.6 should help this by being able to treat compile errors as warnings and get runtime errors instead. [[3]]
 **** Type errors force you to load yesod into your brain as you need to know a bit about yesod to figure out what is wrong.
+**** No caching layer that you can plug in out of the box; if you needed this you'll be rolling you're own with memcache or redis ( this shouldn't be insurmountable since persistent is only as tied into your handlers as you make it yourself).
+**** Would be nice to get a rails-like scaffold generation of handlers and models to speed up CRUD-y prototyping.
 ** Awesome things about yesod
 Very composable. 
 
