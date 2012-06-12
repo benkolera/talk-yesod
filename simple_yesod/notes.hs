@@ -1,33 +1,32 @@
 {-# LANGUAGE TypeFamilies, QuasiQuotes, MultiParamTypeClasses,
-             TemplateHaskell, OverloadedStrings #-}
-{-# LANGUAGE GADTs, FlexibleContexts #-}
+             TemplateHaskell, OverloadedStrings, GADTs, FlexibleContexts #-}
 
 import Yesod
-
+import Yesod.Form.Jquery
 import Database.Persist
 import Database.Persist.Sqlite
 import Database.Persist.TH
-
+import Data.Time
 import Data.Text
-
 import Control.Applicative ((<$>),(<*>))
-
 import Control.Monad.IO.Class (liftIO)
 
 data Notes = Notes { 
   dbConn :: Connection
 }
-
--- Tells our application to use the standard English messages.
--- If you want i18n, then you can supply a translating function instead.
-instance RenderMessage Notes FormMessage where
-    renderMessage _ _ = defaultFormMessage
-
+ 
 share [mkPersist sqlSettings, mkMigrate "migrateAll"] [persist|
 Note
   title Text
+  date  Day Maybe
   body  Textarea
 |]
+
+instance YesodPersist Notes where
+  type YesodPersistBackend Notes = SqlPersist
+  runDB f = do
+    conn <- fmap dbConn getYesod
+    runSqlConn f conn      
 
 mkYesod "Notes" [parseRoutes|
 /notes/        NotesR GET POST
@@ -36,15 +35,31 @@ mkYesod "Notes" [parseRoutes|
 
 instance Yesod Notes
 
-createNoteForm :: Html -> MForm Notes Notes ( FormResult Note , Widget )
-createNoteForm = renderDivs $ Note 
+instance YesodJquery Notes
+instance RenderMessage Notes FormMessage where
+    renderMessage _ _ = defaultFormMessage
+
+createNoteForm :: Day -> Html -> MForm Notes Notes ( FormResult Note , Widget )
+createNoteForm today = renderDivs $ Note 
   <$> areq textField "Title" Nothing
+  <*> aopt dueDateField "Date" ( Just ( Just today ) )
   <*> areq textareaField "Body" Nothing
+  where 
+    dueDateField = jqueryDayField def 
   
 getNotesR :: Handler RepHtml
 getNotesR = do
-  (widget, encType) <- generateFormPost createNoteForm
+  today <- fmap utctDay $ liftIO getCurrentTime
+  (widget, encType) <- generateFormPost $ createNoteForm today
+  showCreateNoteForm widget encType
+
+showCreateNoteForm widget encType = do
+  notes  <- runDB $ selectList [] [Asc NoteTitle]
   defaultLayout [whamlet|
+<h1>Notes
+<ul>                 
+  $forall Entity id note <- notes
+    <li><a href="@{NoteR id}">#{noteTitle note}</a>                            
 <h1>Create Note
 <form method=post action=@{NotesR} enctype=#{encType}>
     ^{widget}
@@ -53,32 +68,26 @@ getNotesR = do
 
 postNotesR :: Handler RepHtml
 postNotesR = do 
-  ((result, widget), encType) <- runFormPost createNoteForm
+  today <- fmap utctDay $ liftIO getCurrentTime
+  ((result, widget), encType) <- runFormPost $ createNoteForm today
   case result of
     FormSuccess note -> postNotesRWin note
-    _ -> postNotesRFail widget encType 
+    _ -> showCreateNoteForm widget encType
 
 postNotesRWin note = do
-  conn   <- fmap dbConn getYesod
-  noteId <- liftIO $ runSqlConn ( insert note ) conn 
+  noteId <- runDB $ insert note
   redirect $ NoteR noteId
-
-postNotesRFail widget encType = defaultLayout [whamlet|
-<p>Invalid input, let's try again.
-<form method=post action=@{NotesR} enctype=#{encType}>
-  ^{widget}
-  <input type=submit>
-|]
 
 getNoteR :: NoteId -> Handler RepHtml
 getNoteR id = do
-  conn   <- fmap dbConn getYesod
-  note   <- liftIO $ runSqlConn ( get id ) conn
+  note <- runDB $ get id
   case note of 
     Nothing    -> notFound
-    ( Just ( Note title body ) ) -> do 
+    ( Just ( Note title date body ) ) -> do 
       defaultLayout [whamlet|
 <h1>#{ title }
+  $maybe d <- date
+    \ ( dated: #{ show d } )
 <p>#{ body }
 |]
   
