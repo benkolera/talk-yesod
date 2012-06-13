@@ -15,4 +15,4 @@ getHomeR :: Text -> Handler RepHtml
 getHomeR name = defaultLayout [whamlet|Hello #{name}!|]
 
 main :: IO ()
-main = warpDebug 3000 HelloWorld
+main = warpDebug 3001 HelloWorld

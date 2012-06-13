@@ -10,6 +10,8 @@ import Data.Time
 import Data.Text
 import Control.Applicative ((<$>),(<*>))
 import Control.Monad.IO.Class (liftIO)
+import qualified Data.Foldable
+import Text.Blaze.Internal ( preEscapedText )
 
 data Notes = Notes { 
   dbConn :: Connection
@@ -55,16 +57,28 @@ getNotesR = do
 
 showCreateNoteForm widget encType = do
   notes  <- runDB $ selectList [] [Asc NoteTitle]
-  defaultLayout [whamlet|
-<h1>Notes
-<ul>                 
-  $forall Entity id note <- notes
-    <li><a href="@{NoteR id}">#{noteTitle note}</a>                            
-<h1>Create Note
-<form method=post action=@{NotesR} enctype=#{encType}>
-    ^{widget}
-    <input type=submit>
-|]
+  defaultLayout $ do 
+    toWidget $ ( preEscapedText . pack) "<h1>Notes</h1><ul>"
+    Data.Foldable.mapM_
+      (\ (Entity id note ) -> do 
+          toWidget $ (preEscapedText . pack) "<li><a href=\""
+          ((lift getUrlRenderParams)
+           >>=
+           (\ urender -> toWidget (toHtml (urender (NoteR id) [] ))))
+          toWidget $ (preEscapedText . pack) "\">"
+          toWidget (toHtml (noteTitle note))
+          toWidget $ (preEscapedText . pack) "</a></li>" )
+      notes
+    toWidget $ (preEscapedText . pack) 
+      "</ul><h1>Create Note</h1><form method=\"post\" action=\""
+    ((lift getUrlRenderParams)
+     >>=
+     (\ urender -> toWidget (toHtml (urender NotesR [] ))))
+    toWidget $ (preEscapedText . pack) "\" enctype=\""
+    toWidget $ toHtml encType
+    toWidget $ (preEscapedText . pack) "\">"
+    toWidget widget
+    toWidget $ (preEscapedText . pack) "<input type=\"submit\"></form>"
 
 postNotesR :: Handler RepHtml
 postNotesR = do 
@@ -97,5 +111,5 @@ main = withSqliteConn ":memory:" run
   where 
     run conn = do 
       runSqlConn (runMigration migrateAll) conn
-      warpDebug 3001 (Notes conn )
+      warpDebug 3002 (Notes conn )
 
