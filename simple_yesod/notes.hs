@@ -12,7 +12,7 @@ import Control.Applicative ((<$>),(<*>))
 import Control.Monad.IO.Class (liftIO)
 
 data Notes = Notes { 
-  dbConn :: Connection
+  dbConn :: Connection -- Use a connection pool in prod, plz.
 }
  
 share [mkPersist sqlSettings, mkMigrate "migrateAll"] [persist|
@@ -56,14 +56,14 @@ getNotesR = do
 showCreateNoteForm widget encType = do
   notes  <- runDB $ selectList [] [Asc NoteTitle]
   defaultLayout [whamlet|
-<h1>Notes
-<ul>                 
-  $forall Entity id note <- notes
-    <li><a href="@{NoteR id}">#{noteTitle note}</a>                            
-<h1>Create Note
-<form method=post action=@{NotesR} enctype=#{encType}>
-    ^{widget}
-    <input type=submit>
+    <h1>Notes
+      <ul>                 
+        $forall Entity id note <- notes
+          <li><a href="@{NoteR id}">#{noteTitle note}</a>                            
+    <h1>Create Note
+    <form method=post action=@{NotesR} enctype=#{encType}>
+      ^{widget}
+      <input type=submit>
 |]
 
 postNotesR :: Handler RepHtml
@@ -83,13 +83,13 @@ getNoteR id = do
   note <- runDB $ get id
   case note of 
     Nothing    -> notFound
-    ( Just ( Note title date body ) ) -> do 
+    Just ( Note title date body ) -> do 
       defaultLayout [whamlet|
-<h1>#{ title }
-  $maybe d <- date
-    \ ( dated: #{ show d } )
-<p>#{ body }
-|]
+        <h1>#{ title }
+        $maybe d <- date
+          \ ( dated: #{ show d } )
+        <p>#{ body }
+      |]
   
 
 main :: IO ()
@@ -97,5 +97,5 @@ main = withSqliteConn ":memory:" run
   where 
     run conn = do 
       runSqlConn (runMigration migrateAll) conn
-      warpDebug 3001 (Notes conn )
+      warpDebug 3002 (Notes conn )
 

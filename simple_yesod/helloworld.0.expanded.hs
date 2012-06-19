@@ -3,7 +3,8 @@
 import Yesod
 import Data.Text
 import qualified Yesod.Routes.Dispatch
-import qualified Data.Map 
+import qualified Data.Map
+import Text.Blaze.Internal (preEscapedText)
 
 data HelloWorld = HelloWorld
 
@@ -36,7 +37,7 @@ instance YesodDispatch HelloWorld HelloWorld where
 instance Yesod HelloWorld
 
 getHomeR :: Handler RepHtml
-getHomeR = defaultLayout [whamlet|Hello yesod!|]
+getHomeR = defaultLayout $ toWidget $ (preEscapedText . pack) "Hello yesod!"
 
 main :: IO ()
 main = warpDebug 3000 HelloWorld

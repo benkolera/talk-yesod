@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>helloworld.0.hs</title>
+<meta name="generator" content="emacs 23.4.1; htmlfontify 0.21" />
+<style type="text/css"><!-- 
+body { font-family: Monaco;  font-stretch: normal;  font-weight: 500;  font-style: normal;  color: #2f4f4f;  background: #eee9e9;  font-size: 11pt;  text-decoration: none; }
+span.default   { font-family: Monaco;  font-stretch: normal;  font-weight: 500;  font-style: normal;  color: #2f4f4f;  background: #eee9e9;  font-size: 11pt;  text-decoration: none; }
+span.default a { font-family: Monaco;  font-stretch: normal;  font-weight: 500;  font-style: normal;  color: #2f4f4f;  background: #eee9e9;  font-size: 11pt;  text-decoration: underline; }
+span.string   { color: #9400d3;  font-family: Monaco;  font-stretch: normal;  font-weight: 500;  font-style: normal;  background: #eee9e9;  font-size: 11pt;  text-decoration: none; }
+span.string a { color: #9400d3;  font-family: Monaco;  font-stretch: normal;  font-weight: 500;  font-style: normal;  background: #eee9e9;  font-size: 11pt;  text-decoration: underline; }
+span.function-name   { color: #00008b;  font-weight: 700;  font-family: Monaco;  font-stretch: normal;  font-style: normal;  background: #eee9e9;  font-size: 11pt;  text-decoration: none; }
+span.function-name a { color: #00008b;  font-weight: 700;  font-family: Monaco;  font-stretch: normal;  font-style: normal;  background: #eee9e9;  font-size: 11pt;  text-decoration: underline; }
+span.variable-name   { color: #ff6347;  font-family: Monaco;  font-stretch: normal;  font-weight: 500;  font-style: normal;  background: #eee9e9;  font-size: 11pt;  text-decoration: none; }
+span.variable-name a { color: #ff6347;  font-family: Monaco;  font-stretch: normal;  font-weight: 500;  font-style: normal;  background: #eee9e9;  font-size: 11pt;  text-decoration: underline; }
+span.type   { color: #daa520;  font-family: Monaco;  font-stretch: normal;  font-weight: 500;  font-style: normal;  background: #eee9e9;  font-size: 11pt;  text-decoration: none; }
+span.type a { color: #daa520;  font-family: Monaco;  font-stretch: normal;  font-weight: 500;  font-style: normal;  background: #eee9e9;  font-size: 11pt;  text-decoration: underline; }
+span.keyword   { color: #1e90ff;  font-weight: 700;  font-family: Monaco;  font-stretch: normal;  font-style: normal;  background: #eee9e9;  font-size: 11pt;  text-decoration: none; }
+span.keyword a { color: #1e90ff;  font-weight: 700;  font-family: Monaco;  font-stretch: normal;  font-style: normal;  background: #eee9e9;  font-size: 11pt;  text-decoration: underline; }
+span.comment   { color: #8b8989;  font-family: Monaco;  font-stretch: normal;  font-weight: 500;  font-style: normal;  background: #eee9e9;  font-size: 11pt;  text-decoration: none; }
+span.comment a { color: #8b8989;  font-family: Monaco;  font-stretch: normal;  font-weight: 500;  font-style: normal;  background: #eee9e9;  font-size: 11pt;  text-decoration: underline; }
+span.comment-delimiter   { color: #8b8989;  font-family: Monaco;  font-stretch: normal;  font-weight: 500;  font-style: normal;  background: #eee9e9;  font-size: 11pt;  text-decoration: none; }
+span.comment-delimiter a { color: #8b8989;  font-family: Monaco;  font-stretch: normal;  font-weight: 500;  font-style: normal;  background: #eee9e9;  font-size: 11pt;  text-decoration: underline; }
+ --></style>
+
+    <script type="text/javascript"><!--
+  // this function is needed to work around
+  // a bug in IE related to element attributes
+  function hasClass(obj)
+  {
+      var result = false;
+      if (obj.getAttributeNode("class") != null)
+      {
+          result = obj.getAttributeNode("class").value;
+      }
+      return result;
+  }
+
+  function stripe(id)
+  {
+      // the flag we'll use to keep track of
+      // whether the current row is odd or even
+      var even = false;
+
+      // if arguments are provided to specify the colors
+      // of the even & odd rows, then use the them;
+      // otherwise use the following defaults:
+      var evenColor = arguments[1] ? arguments[1] : "#fff";
+      var oddColor  = arguments[2] ? arguments[2] : "#ddd";
+
+      // obtain a reference to the desired table
+      // if no such table exists, abort
+      var table = document.getElementById(id);
+      if (! table) { return; }
+
+      // by definition, tables can have more than one tbody
+      // element, so we'll have to get the list of child
+      // &lt;tbody&gt;s
+      var tbodies = table.getElementsByTagName("tbody");
+
+      // and iterate through them...
+      for (var h = 0; h < tbodies.length; h++)
+      {
+          // find all the &lt;tr&gt; elements...
+          var trs = tbodies[h].getElementsByTagName("tr");
+
+          // ... and iterate through them
+          for (var i = 0; i < trs.length; i++)
+          {
+              // avoid rows that have a class attribute
+              // or backgroundColor style
+              if (! hasClass(trs[i]) &&
+                  ! trs[i].style.backgroundColor)
+              {
+                  // get all the cells in this row...
+                  var tds = trs[i].getElementsByTagName("td");
+
+                  // and iterate through them...
+                  for (var j = 0; j < tds.length; j++)
+                  {
+                      var mytd = tds[j];
+
+                      // avoid cells that have a class attribute
+                      // or backgroundColor style
+                      if (! hasClass(mytd) &&
+                          ! mytd.style.backgroundColor)
+                      {
+                          mytd.style.backgroundColor =
+                            even ? evenColor : oddColor;
+                      }
+                  }
+              }
+              // flip from odd to even, or vice-versa
+              even =  ! even;
+          }
+      }
+  }
+
+  function toggle_invis( name )
+  {
+      var filter =
+        { acceptNode:
+          function( node )
+          { var classname = node.id;
+            if( classname )
+            { var classbase = classname.substr( 0, name.length );
+              if( classbase == name ) { return NodeFilter.FILTER_ACCEPT; } }
+            return NodeFilter.FILTER_SKIP; } };
+      var walker = document.createTreeWalker( document.body           ,
+                                              NodeFilter.SHOW_ELEMENT ,
+                                              filter                  ,
+                                              false                   );
+      while( walker.nextNode() )
+      {
+          var e = walker.currentNode;
+          if( e.style.display == "none" ) { e.style.display = "inline"; }
+          else                            { e.style.display = "none";   }
+      }
+  }
+--> </script>
+  </head>
+  <body onload="stripe('index'); return true;">
+
+<pre><span class="comment-delimiter">{-</span><span class="comment"># LANGUAGE TypeFamilies, QuasiQuotes, MultiParamTypeClasses,</span><span class="comment">
+</span><span class="comment">             TemplateHaskell, OverloadedStrings #-}</span>
+<span class="keyword">import</span> <span class="type">Yesod</span>
+<span class="keyword">import</span> <span class="type">Data.Text</span>
+
+<span class="keyword">data</span> <span class="type">HelloWorld</span> <span class="variable-name">=</span> <span class="type">HelloWorld</span>
+
+<span class="function-name">mkYesod</span> <span class="string">&quot;HelloWorld&quot;</span> [parseRoutes<span class="variable-name">|</span>
+<span class="variable-name">/</span> <span class="type">HomeR</span> <span class="type">GET</span>
+<span class="variable-name">|</span>]
+
+<span class="keyword">instance</span> <span class="type">Yesod</span> <span class="type">HelloWorld</span>
+
+<span class="function-name">getHomeR</span> <span class="variable-name">::</span> <span class="type">Handler</span> <span class="type">RepHtml</span>
+<span class="function-name">getHomeR</span> <span class="variable-name">=</span> defaultLayout [whamlet<span class="variable-name">|</span><span class="type">Hello</span> yesod<span class="variable-name">!|</span>]
+
+<span class="function-name">main</span> <span class="variable-name">::</span> <span class="type">IO</span> <span class="type">()</span>
+<span class="function-name">main</span> <span class="variable-name">=</span> warpDebug 3000 <span class="type">HelloWorld</span>
+</pre>
+
+ </body>
+</html>
+

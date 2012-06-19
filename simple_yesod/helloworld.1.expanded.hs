@@ -10,9 +10,7 @@ data HelloWorld = HelloWorld
 
 instance RenderRoute HelloWorld where
   data Route HelloWorld = HomeR Text deriving (Show, Eq, Read)
-  renderRoute (HomeR name) = 
-    (((pack "hello") : ((toPathPiece name) : [])), 
-     [])
+  renderRoute (HomeR name) = ([pack "hello",toPathPiece name], [])
 
 type Handler = GHandler HelloWorld HelloWorld
 type Widget = GWidget HelloWorld HelloWorld ()

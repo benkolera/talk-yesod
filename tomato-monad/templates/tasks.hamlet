@@ -1,5 +1,0 @@
-<p>View a list of tasks and create new tasks. 
-
-^{ dueTasksW }
-^{ notDueTasksW }
-^{ taskFormW }
