@@ -12,11 +12,21 @@ import Control.Applicative ((<$>),(<*>))
 import Control.Monad.IO.Class (liftIO)
 import qualified Data.Foldable
 import Text.Blaze.Internal ( preEscapedText )
+import qualified Data.Map
+import qualified Yesod.Routes.Dispatch
+
+-- This is written here because Text.Hamlet.maybeH is private
+import Data.Maybe (fromMaybe)
+import Control.Monad (mplus)
+maybeH mv f mm = fromMaybe (return ()) $ fmap f mv `mplus` mm
+-- End maybeH
 
 data Notes = Notes { 
   dbConn :: Connection
 }
- 
+
+
+-- You don't really need to see this expanded. Trust me. ;) 
 share [mkPersist sqlSettings, mkMigrate "migrateAll"] [persist|
 Note
   title Text
@@ -30,10 +40,59 @@ instance YesodPersist Notes where
     conn <- fmap dbConn getYesod
     runSqlConn f conn      
 
-mkYesod "Notes" [parseRoutes|
-/notes/        NotesR GET POST
-/notes/#NoteId NoteR  GET
-|]
+instance RenderRoute Notes where
+  data Route Notes = NotesR | NoteR NoteId deriving (Show, Eq, Read)
+  renderRoute NotesR = ([pack "notes"], [])
+  renderRoute (NoteR id) = ([pack "notes", (toPathPiece id)],[])
+
+type Handler = GHandler Notes Notes
+type Widget = GWidget Notes Notes ()
+instance YesodDispatch Notes Notes where
+  yesodDispatch master sub toMaster handler404 handler405 method pieces =
+    case dispatch pieces of 
+      Just f  -> f master sub toMaster handler404 handler405 method
+      Nothing -> handler404
+    where
+      dispatch = Yesod.Routes.Dispatch.toDispatch
+                 [
+                   Yesod.Routes.Dispatch.Route
+                   [Yesod.Routes.Dispatch.Static (pack "notes")]
+                   False
+                   handleNotesPieces
+                 , Yesod.Routes.Dispatch.Route
+                   [Yesod.Routes.Dispatch.Static (pack "notes")
+                    , Yesod.Routes.Dispatch.Dynamic]
+                   False
+                   handleNotePieces
+                  ]
+
+      handleNotesPieces [_] = Just handleNotesMethods
+      handleNotesPieces _ = error "invariant violated"
+
+      handleNotesMethods master sub toMaster handler404 handler405 method  =
+        case Data.Map.lookup method methodsNotesR of 
+          Just f -> let handler = f 
+                    in
+                     yesodRunner handler master sub (Just NotesR) toMaster
+          Nothing -> handler405 NotesR 
+
+      handleNotePieces [ _ , id ] = do
+        id' <- fromPathPiece id
+        Just $ handleNoteMethods id'
+      handleNotePieces _ = error "Invariant violated"
+
+      handleNoteMethods id master sub toMaster handler404 handler405 method  =
+        case Data.Map.lookup method methodsNoteR of 
+          Just f -> let handler = f id
+                    in
+                     yesodRunner handler master sub (Just (NoteR id)) toMaster
+          Nothing -> handler405 (NoteR id) 
+
+      methodsNotesR = Data.Map.fromList
+                      [(pack "GET", fmap chooseRep getNotesR),
+                       (pack "POST",fmap chooseRep postNotesR)]
+      methodsNoteR = Data.Map.fromList
+                     [(pack "GET", \ id -> fmap chooseRep (getNoteR id))]
 
 instance Yesod Notes
 
@@ -41,7 +100,6 @@ instance YesodJquery Notes
 instance RenderMessage Notes FormMessage where
     renderMessage _ _ = defaultFormMessage
 
-createNoteForm :: Day -> Html -> MForm Notes Notes ( FormResult Note , Widget )
 createNoteForm today = renderDivs $ Note 
   <$> areq textField "Title" Nothing
   <*> aopt dueDateField "Date" ( Just ( Just today ) )
@@ -49,7 +107,6 @@ createNoteForm today = renderDivs $ Note
   where 
     dueDateField = jqueryDayField def 
   
-getNotesR :: Handler RepHtml
 getNotesR = do
   today <- fmap utctDay $ liftIO getCurrentTime
   (widget, encType) <- generateFormPost $ createNoteForm today
@@ -80,7 +137,6 @@ showCreateNoteForm widget encType = do
     toWidget widget
     toWidget $ (preEscapedText . pack) "<input type=\"submit\"></form>"
 
-postNotesR :: Handler RepHtml
 postNotesR = do 
   today <- fmap utctDay $ liftIO getCurrentTime
   ((result, widget), encType) <- runFormPost $ createNoteForm today
@@ -92,21 +148,27 @@ postNotesRWin note = do
   noteId <- runDB $ insert note
   redirect $ NoteR noteId
 
-getNoteR :: NoteId -> Handler RepHtml
 getNoteR id = do
   note <- runDB $ get id
   case note of 
     Nothing    -> notFound
-    ( Just ( Note title date body ) ) -> do 
-      defaultLayout [whamlet|
-<h1>#{ title }
-  $maybe d <- date
-    \ ( dated: #{ show d } )
-<p>#{ body }
-|]
+    Just ( Note title date body ) -> do 
+      defaultLayout $ do
+        toWidget ((preEscapedText . pack) "<h1>")
+        toWidget (toHtml title)
+        toWidget ((preEscapedText . pack) "</h1>");
+        maybeH
+          date
+          (\ date -> do
+              toWidget ((preEscapedText . pack) " ( dated: ")
+              toWidget (toHtml (show date))
+              toWidget ((Text.Blaze.Internal.preEscapedText . pack) " )")
+          )
+          Nothing
+        toWidget ((preEscapedText . pack) "<p>")
+        toWidget (toHtml body)
+        toWidget ((preEscapedText . pack) "</p>")
   
-
-main :: IO ()
 main = withSqliteConn ":memory:" run
   where 
     run conn = do 

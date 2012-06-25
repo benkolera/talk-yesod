@@ -4,10 +4,12 @@ import Yesod
 import Data.Text
 import qualified Data.Map
 import qualified Yesod.Routes.Dispatch
-import qualified Text.Blaze.Internal
+import Text.Blaze.Internal (preEscapedText)
 
 data HelloWorld = HelloWorld
 
+-- Note that our HomeR constructor has one argument. You cannot construct one of
+-- these routes without this arg.
 instance RenderRoute HelloWorld where
   data Route HelloWorld = HomeR Text deriving (Show, Eq, Read)
   renderRoute (HomeR name) = ([pack "hello",toPathPiece name], [])
@@ -28,8 +30,9 @@ instance YesodDispatch HelloWorld HelloWorld where
             Yesod.Routes.Dispatch.Dynamic]
           False
           handleHelloPieces]
-          
-          
+      -- This bit is interesting. We'll end up with a 404 if fromPathPiece fails
+      -- to parse a Text from the pathPiece. ( This is boring and pointless for
+      -- a Text, but is powerful for non-Text types ).
       handleHelloPieces [_, x ] = do 
         y <- fromPathPiece x
         Just $ handleHelloMethods y
@@ -44,11 +47,10 @@ instance YesodDispatch HelloWorld HelloWorld where
 
 instance Yesod HelloWorld
 
-getHomeR :: Text -> Handler RepHtml
+-- toHtml will escape any html characters in the name variable. No XSS attacks!
 getHomeR name = defaultLayout $ do
-  toWidget ((Text.Blaze.Internal.preEscapedText . pack) "Hello ")
+  toWidget ((preEscapedText . pack) "Hello ")
   toWidget (toHtml name)
-  toWidget ((Text.Blaze.Internal.preEscapedText . pack) "!")
+  toWidget ((preEscapedText . pack) "!")
 
-main :: IO ()
 main = warpDebug 3001 HelloWorld

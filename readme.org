@@ -1,12 +1,32 @@
-* BFPG Talk on Yesod 
-This is the working ground for a talk I am preparing for [[http://www.bfpg.org/][BFPG]] in june. Watch this space!
+* Type-safe Web Development with Yesod & Haskell
+  This is a talk that I gave at the 2012-05-22 [[http://www.bfpg.org][BFPG]] meetup. In this repo you may
+  find the slides and all of the source code used during the presentation.
 
-** Simple Yesod
-Take a look in the simple_yesod folder for some super simple one-file yesod
-applications that help demystify the basics of yesod without needing to jump
-into the scaffolding. 
+  Yesod is a very interesting web framework written in Haskell that tries to
+  leverage the haskell type system as much as possible to reduce common errors
+  during development. In this talk we will explore this type safety and also how
+  the boilerplate burden of these types are largely hidden by the yesod
+  metaprogramming functions.
 
-** Presentation.{org,txt}
-These are my rough outline of what I want to talk about. They aren't really fit for 
-human consumption yet and will be refined / replaced with a real outline and slides
-later on.
+** Setup 
+   1) Install the [[http://hackage.haskell.org/platform][Haskell Platform]].
+   2) cabal install virthualenv
+   3) In this directory, run: "virthualenv"
+   4) "source .virthualenv/bin/activate"
+   5) "cabal install yesod persistent-sqllite"
+   6) Run any of these haskell files with "runhaskell <file>" to get the example
+      up and running. 
+
+** Hello World
+   These examples show yesod at its simplest. One route with no database cruft
+   to get in the way of the fundamentals. The expanded files are simply the same
+   file as the non-expanded ones, just with (a very cleaned up) version of the
+   expanded code in place of the metaprogramming calls.
+
+** Notes 
+   This example shows most things that you want to see in a webapp (sans
+   sessions and auth) while still keeping true to the single file example. 
+
+   The broken file show the note route in the middle of a refactor, showing what
+   type errors the compiler picks up after this route change.
+
