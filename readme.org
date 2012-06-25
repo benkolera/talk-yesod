@@ -1,5 +1,5 @@
 * Type-safe Web Development with Yesod & Haskell
-  This is a talk that I gave at the 2012-05-22 [[http://www.bfpg.org][BFPG]] meetup. In this repo you may
+  This is a talk that I gave at the 2012-06-22 [[http://www.bfpg.org][BFPG]] meetup. In this repo you may
   find the slides and all of the source code used during the presentation.
 
   Yesod is a very interesting web framework written in Haskell that tries to
