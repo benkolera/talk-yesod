@@ -43,7 +43,7 @@ instance PathPiece Year where
 instance PathPiece Month where
   toPathPiece   = pack. show
   fromPathPiece = (F.find validMonth) . maybeRead . unpack
-    where validMonth (Month m) = ( m > 0 && m < 32 )
+    where validMonth (Month m) = ( m >= 0 && m <= 12 )
 
 mkYesod "Notes" [parseRoutes|
 /notes/        NotesR GET POST
